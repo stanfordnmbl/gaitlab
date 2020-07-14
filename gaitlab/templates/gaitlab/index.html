@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>On-line Movement Analysis</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="{% static "css/normalize.css" %}">
+  <link rel="stylesheet" href="{% static "css/skeleton.css" %}">
+  <link rel="stylesheet" href="{% static "css/custom.css" %}">
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="../../dist/images/favicon.png">
+  <style>
+    a {color: #ffffff;}
+    a:hover {color: #ffffff; text-decoration: none}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+}
+iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    }
+    .logos img {
+    padding: 0.75em;
+    height: 3em;
+    }
+    
+  </style>
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <div class="section hero">
+    <div class="container">
+      <div class="row">
+        <div class="one-half column">
+          <h4 class="hero-heading">Participate in a research study and learn about your gait</h4>
+          <a class="button button-primary" href="#analyze">Analyze your gait</a>
+        </div>
+        <div class="one-half column phones">
+          <img class="phone" src="{% static "images/iphone.png" %}">
+          <!--img class="phone" src="{% static "images/iphone.png" %}"-->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section categories" id="analyze">
+    <div class="container">
+      <h3 class="section-heading">Ask someone to record a video of you walking</h3>
+      <p class="section-description"><a href="#license" style="font-size: 1.1em;">Before using our software read and accept our license agreement.</a></p>
+      <form method="POST" action="/" enctype="multipart/form-data">
+	{% csrf_token %}
+	{{ form }}
+	<div><input type="submit" value="Process my video" style="background: #ffffff;" /></div>
+      </form>
+          <!--img class="u-max-full-width" src="{% static "images/placeholder.png" %}"-->
+    </div>
+  </div>
+  
+  <div class="section">
+    <div class="container">
+      <h3 class="section-heading">Our research</h3>
+      <div class="video-container" style="margin-bottom: 2em">
+	<iframe src="https://www.youtube.com/embed/pb4WvAhsRe4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<img class="u-max-full-width" src="{% static "images/placeholder.png" %}">
+      </div>
+
+      <p style="font-size: 1.5em">Łukasz Kidziński*, Bryan Yang*, Jennifer Hicks, Apoorva Rajagopal, Scott Delp, Michael Schwatrtz, "Deep neural networks enable quantitative movement analysis using single-camera videos", Nature Communications (2020)
+      </p>
+      <p class="logos">
+	<img src="{% static "images/nature-comm.png" %}">
+	<img src="{% static "images/stanford.png" %}">
+	<img src="{% static "images/uminn.png" %}">
+	<img src="{% static "images/gillette.png" %}">
+      </p>
+    </div>
+  </div>
+
+  <div class="section categories">
+    <div class="container">
+      <h3 class="section-heading">About</h3>
+      <p class="section-description"></p>
+    </div>
+  </div>
+
+
+  <div class="section get-help" id="license" style="text-align: left;">
+    <div class="container">
+      <h3 class="section-heading" style="text-align: center">License agreement</h3>
+      <p>
+<ol>
+<li> The Board of Trustees of the Leland Stanford Junior University ("Stanford") provides KneeNet software and code ("Service") free of charge for non-commercial use only. Use of the Service by any commercial entity for any purpose, including research, is prohibited.</li>
+<li> By using the Service, you agree to be bound by the terms of this Agreement. Please read it carefully.</li>
+<li> You agree not to use the Service for commercial advantage, or in the course of for-profit activities. You agree not to use the Service on behalf of any organization that is not a non-profit organization. Commercial entities wishing to use this Service should contact Stanford University's Office of Technology Licensing.</li>
+<li> THE SERVICE IS OFFERED "AS IS", AND, TO THE EXTENT PERMITTED BY LAW, STANFORD MAKES NO REPRESENTATIONS AND EXTENDS NO WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. STANFORD SHALL NOT BE LIABLE FOR ANY CLAIMS OR DAMAGES WITH RESPECT TO ANY LOSS OR OTHER CLAIM BY YOU OR ANY THIRD PARTY ON ACCOUNT OF, OR ARISING FROM THE USE OF THE SERVICE. YOU HEREBY AGREE TO DEFEND AND INDEMNIFY STANFORD, ITS TRUSTEES, EMPLOYEES, OFFICERS, STUDENTS, AGENTS, FACULTY, REPRESENTATIVES, AND VOLUNTEERS ("STANFORD INDEMNITEES") FROM ANY LOSS OR CLAIM ASSERTED AGAINST STANFORD INDEMNITEES ARISING FROM YOUR USE OF THE SERVICE.</li>
+<li> All rights not expressly granted to you in this Agreement are reserved and retained by Stanford or its licensors or content providers. This Agreement provides no license under any patent.</li>
+<li> You agree that this Agreement and any dispute arising under it is governed by the laws of the State of California, United States of America, applicable to agreements negotiated, executed, and performed within California.</li>
+<li> Subject to your compliance with the terms and conditions set forth in this Agreement, Stanford grants you a revocable, non-exclusive, non-transferable right to access and make use of the Service.</li>
+</ol>
+</p>
+    </div>
+  </div>
+
+
+
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

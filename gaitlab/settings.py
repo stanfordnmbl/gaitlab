@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'gaitlab',
+    'randomslugfield',
 ]
 
 MIDDLEWARE = [
@@ -119,3 +121,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID", None)
+AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_ACCESS_KEY", None)
+AWS_STORAGE_BUCKET_NAME = "gaitlab"
+AWS_S3_REGION_NAME = "us-west-2"
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+# the sub-directories of media and static files
+STATICFILES_LOCATION = 'static'
+MEDIAFILES_LOCATION = 'media'
+
+STATICFILES_STORAGE = 'gaitlab.custom_storages.StaticStorage'
+DEFAULT_FILE_STORAGE = 'gaitlab.custom_storages.MediaStorage'
+STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
