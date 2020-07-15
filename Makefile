@@ -9,5 +9,5 @@ push:
 .PHONY: run
 run:
 	docker rm gaitlab 2> /dev/null
-	docker run -p 80:80 --name gaitlab stanfordnmbl/gaitlab
+	docker-compose up
 
