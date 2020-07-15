@@ -5,6 +5,8 @@ from django.forms.widgets import ClearableFileInput
 from django.shortcuts import redirect
 from gaitlab.models import Video, Annotation
 from gaitlab import celery_app
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 def analysis(request, slug):
     video = Video.objects.get(slug=slug)
@@ -22,7 +24,10 @@ def index(request):
             obj = form.save()
             ann = Annotation(video=obj)
             ann.save()
-            celery_app.send_task("gaitlab.cp", ({"annotation_id": ann.id, "video_url": obj.file.url}, ))
+            celery_app.send_task("gaitlab.cp", ({
+                "annotation_id": ann.id,
+                "video_url": obj.file.url
+            }, ))
             return redirect(obj)
     else:
         form = VideoForm()
@@ -31,3 +36,13 @@ def index(request):
 
     return render(request, 'gaitlab/index.html', { "form": form })
 
+@csrf_exempt
+def annotation_update(request, id):
+    ann = Annotation.objects.get(id=id)
+    ann.file.save(request.FILES["file"].name, request.FILES["file"])
+
+    print(request.POST["result"])
+    ann.response = json.loads(request.POST["result"])
+    ann.status = "done"
+    ann.save()
+    return HttpResponse("Done")

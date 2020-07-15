@@ -21,5 +21,6 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('analysis/<slug:slug>/', views.analysis, name='analysis'),
+    path('annotation/<int:id>/', views.annotation_update, name='annotation'),
     path('admin/', admin.site.urls),
 ]

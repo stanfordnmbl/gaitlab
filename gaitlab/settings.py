@@ -26,9 +26,9 @@ SECRET_KEY = 'ieq1!ik0pt*j)pag5o%%(iy$jn!bj6iwe!x$-3pf5$va+cs#45'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = 'redis://redis:6379/0'
 
 
 # Application definition
@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'gaitlab.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'data/db.sqlite3'),
     }
 }
 
