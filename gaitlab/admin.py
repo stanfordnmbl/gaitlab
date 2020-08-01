@@ -3,8 +3,11 @@ from gaitlab.models import Video, Annotation
 
 class AnnotationAdmin(admin.ModelAdmin):
     pass
+
 class VideoAdmin(admin.ModelAdmin):
-    pass
+    readonly_fields = ["slug",]
+    fields = ["slug","file","email",]
+
 
 admin.site.register(Annotation, AnnotationAdmin)
 admin.site.register(Video, VideoAdmin)

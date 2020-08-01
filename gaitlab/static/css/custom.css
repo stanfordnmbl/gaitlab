@@ -149,3 +149,7 @@
     max-height: 570px;
   }
 }
+a {
+    color: #000000;
+    text-decoration: underline;
+}

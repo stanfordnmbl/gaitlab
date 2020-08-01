@@ -22,11 +22,14 @@ STATUS_CHOICES = [
 
 class Video(models.Model):
     slug = RandomSlugField(length=8)
-    file = models.FileField(upload_to=get_file_path("inputs"))
+    file = models.FileField("Video file", upload_to=get_file_path("inputs"))
     email = models.EmailField(null=True)
 
     def get_absolute_url(self):
         return reverse('analysis', args=[str(self.slug)])
+
+    def __str__(self):
+        return self.slug.__str__()
 
 class Annotation(models.Model):
     video = models.ForeignKey(Video, on_delete=models.CASCADE)

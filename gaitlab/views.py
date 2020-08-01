@@ -8,14 +8,64 @@ from gaitlab import celery_app
 from django.views.decorators.csrf import csrf_exempt
 import json
 
+map_gmfcs = {
+    0: "I",
+    1: "I",
+    2: "II",
+    3: "III",
+    4: "IV",
+    5: "IV",
+}
+
+map_key_names = {
+    "gmfcs": "GMFCS",
+    "SEMLS_dev_residual": "SEMLS indication",
+    "KneeFlex_maxExtension_L": "Left knee flex. at max extension",
+    "KneeFlex_maxExtension_R": "Right knee flex. at max extension",
+}
+
+map_units = {
+    "speed": "m/s",
+    "cadence": "strides/s",
+    "KneeFlex_maxExtension_L": "degrees",
+    "KneeFlex_maxExtension_R": "degrees",
+}
+
 def analysis(request, slug):
     video = Video.objects.get(slug=slug)
     annotations = video.annotation_set.all()
     annotation = None
     if annotations.count() > 0:
         annotation = annotations[0]
+
+    # convert to int
+    results = annotation.response
+    results["GDI"] = int(results["GDI"])
+    results["gmfcs"] = map_gmfcs.get(int(results["gmfcs"]),"N/A")
+
+    # convert to 2 decimals
+    for key in ["speed","cadence","SEMLS_dev_residual","KneeFlex_maxExtension_L","KneeFlex_maxExtension_R"]:
+        results[key] = round(float(results[key]), 2)
+
+    # add units
+    for key in map_units.keys():
+        results[key] = "{} {}".format(results[key], map_units[key])
     
-    return render(request, 'gaitlab/analysis.html', { "video": video, "annotation": annotation })
+
+    # fix names 
+    keys = list(results.keys())
+    for key in keys:
+        if key not in map_key_names.keys():
+            continue
+        val = results[key]
+        del results[key]
+        results[map_key_names[key]] = val
+    
+    return render(request, 'gaitlab/analysis.html', {
+        "video": video,
+        "annotation": annotation,
+        "results": results,
+    })
 
 def index(request):
     if request.method == 'POST':
