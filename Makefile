@@ -4,7 +4,7 @@ docker:
 
 .PHONY: push
 push:
-	docker build . -t stanfordnmbl/gaitlab
+	docker push stanfordnmbl/gaitlab
 
 .PHONY: run
 run:
