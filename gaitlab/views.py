@@ -31,15 +31,7 @@ map_units = {
     "KneeFlex_maxExtension_R": "degrees",
 }
 
-def analysis(request, slug):
-    video = Video.objects.get(slug=slug)
-    annotations = video.annotation_set.all()
-    annotation = None
-    if annotations.count() > 0:
-        annotation = annotations[0]
-
-    # convert to int
-    results = annotation.response
+def update_results(results):
     results["GDI"] = int(results["GDI"])
     results["gmfcs"] = map_gmfcs.get(int(results["gmfcs"]),"N/A")
 
@@ -60,7 +52,20 @@ def analysis(request, slug):
         val = results[key]
         del results[key]
         results[map_key_names[key]] = val
-    
+    return results
+
+def analysis(request, slug):
+    video = Video.objects.get(slug=slug)
+    annotations = video.annotation_set.all()
+    annotation = None
+    if annotations.count() > 0:
+        annotation = annotations[0]
+
+    # convert to int
+    results = annotation.response
+
+    if results:
+        results = update_results(results)
     return render(request, 'gaitlab/analysis.html', {
         "video": video,
         "annotation": annotation,

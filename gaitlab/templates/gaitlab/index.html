@@ -30,6 +30,7 @@
   <div class="section categories" id="analyze">
     <div class="container">
       <h3 class="section-heading">Ask someone to record a video of you walking</h3>
+      <a href="#instructions">For best results see instructions</a>
       <p class="section-description">
       <form method="POST" action="/" id="videoForm" name="videoForm" enctype="multipart/form-data">
 	{% csrf_token %}
@@ -58,6 +59,9 @@
 	<a target="_blank" href="https://twin-cities.umn.edu/"><img src="{% static "images/uminn.png" %}"></a>
 	<a target="_blank" href="https://www.nature.com/ncomms/"><img src="{% static "images/nature-comm.png" %}"></a>
       </p>
+      <p>
+	Our research was supported by the <a target="_blank" href="http://mobilize.stanford.edu/">Mobilize Center</a>, a National Institutes of Health Big Data to Knowledge (BD2K) Center of Excellence through Grant U54EB020405, and <a target="_blank" href="http://restore.stanford.edu/">RESTORE Center</a>, a National Institutes of Health Center through Grant P2CHD10191301.
+      </p>
     </div>
   </div>
 
@@ -67,7 +71,7 @@
       <strong>Finding  the right spot</strong>
       <ul>
 <li>Find an uncluttered place (e.g. no shoes on the ground, pizza boxes, furniture, etc...)</li>
-<li>Make sure there is a relatively flat path, approximately 10m long</li>
+<li>Make sure there is a relatively flat path, approximately 10m / 30ft long</li>
 <li>Make sure feet are visible (i.e. no tall grass)</li>
 <li>Look for an area with even lighting. Avoid strong backlight</li>
 <li>Look for an area with minimal background distractions (uniform or distant background)</li>
@@ -77,9 +81,10 @@
       <ul>
 <li>Hold camera vertically (portrait mode)</li>
 <!--li>Use a standard camera lens (not wide angle or telephoto) between 24mm-50mm full-frame equivalent. Note: iPhone = 26mm, Pixel = 28mm</li-->
-<li>Hold the camera about 1.5 m off the ground</li>
-<li>Stand approximately 3-4 m from subject - note subject should take up about 2/3 of the frame</li>
+<li>Hold the camera about 1.5m / 5ft off the ground</li>
+<li>Stand approximately 3-4m / 10-13ft from subject - note subject should take up about 2/3 of the frame</li>
 <li>As subject walks, rotate camera about vertical axis to keep subject centered in frame</li>
+<li>For best results the subject should be wearing shorts or form-fitting pants (e.g. yoga pants, running tights, etc...) and a short-sleeved or sleeveless top</li>
 </ul>
       <strong>Capturing the video</strong>
       <ul>
@@ -87,6 +92,7 @@
 <li>Ask the subject to proceed back and forth four times (two laps)</li>
 <li>Start capturing video AFTER subject begins walking</li>
 <li>Stop capturing video BEFORE subject stops walking</li>
+<li>Alternatively, edit your video so that it starts and stops with the subject walking</li>
 </ul>
       <p class="section-description"></p-->
     </div>
@@ -101,8 +107,9 @@
   <li> The Board of Trustees of the Leland Stanford Junior University ("Stanford") provides Web Gait Analysis software and code ("Service") free of charge for non-commercial use only. Use of the Service by any commercial entity for any purpose, including research, is prohibited.</li>
   <li> By using the Service, you agree to be bound by the terms of this Agreement. Please read it carefully.</li>
   <li>You acknowledge that content submitted to this website is stored on Amazon AWS Cloud servers and that it'll be available under a <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0 license</a>.</li>
+  <li>Videos submitted to the website are stored within AWS cloud under randomly generated URLs. Videos are periodically deleted, but we make no guarantees about external access by third parties. Content submitted to this website should be considered as publicly available.</li>
   <li>This software is a demonstration of a research result and can't be used for diagnostics or any other clinical purposes. Contact your doctor for a clinically relevant assessment of gait.</li>
-  <li>This deployment is maintained by Neuromuscular Biomechanics Lab at Stanford. For questions and inquiries contact Łukasz Kidziński (lukasz.kidzinski AT stanfrod.edu).
+  <li>This deployment is maintained by Neuromuscular Biomechanics Lab at Stanford. For questions and inquiries contact Łukasz Kidziński (lukasz.kidzinski AT stanford.edu).
   <li> You agree not to use the Service for commercial advantage, or in the course of for-profit activities. You agree not to use the Service on behalf of any organization that is not a non-profit organization. Commercial entities wishing to use this Service should contact Stanford University's Office of Technology Licensing.</li>
   <li> THE SERVICE IS OFFERED "AS IS", AND, TO THE EXTENT PERMITTED BY LAW, STANFORD MAKES NO REPRESENTATIONS AND EXTENDS NO WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. STANFORD SHALL NOT BE LIABLE FOR ANY CLAIMS OR DAMAGES WITH RESPECT TO ANY LOSS OR OTHER CLAIM BY YOU OR ANY THIRD PARTY ON ACCOUNT OF, OR ARISING FROM THE USE OF THE SERVICE. YOU HEREBY AGREE TO DEFEND AND INDEMNIFY STANFORD, ITS TRUSTEES, EMPLOYEES, OFFICERS, STUDENTS, AGENTS, FACULTY, REPRESENTATIVES, AND VOLUNTEERS ("STANFORD INDEMNITEES") FROM ANY LOSS OR CLAIM ASSERTED AGAINST STANFORD INDEMNITEES ARISING FROM YOUR USE OF THE SERVICE.</li>
   <li> All rights not expressly granted to you in this Agreement are reserved and retained by Stanford or its licensors or content providers. This Agreement provides no license under any patent.</li>
